@@ -56,7 +56,7 @@ jobs:
             --build-arg JWT_SECRET="${{ secrets.JWT_SECRET }}" \
             --build-arg JWT_ISSUER="${{ secrets.JWT_ISSUER }}" \
             --build-arg JWT_EXPIRATION="${{ secrets.JWT_EXPIRATION }}" \
-            -t "${{ secrets.DOCKER_USERNAME }}/api-gateway:latest" \
+            -t "${{ secrets.DOCKER_USERNAME }}/eventura-api-gateway:latest" \
             --load
 
       - name: Push Docker image
