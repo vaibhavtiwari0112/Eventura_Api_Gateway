@@ -28,6 +28,7 @@ spring:
           predicates:
             - Path=/api/catalog/**
           filters:
+            - StripPrefix=1
             - name: CircuitBreaker
               args:
                 name: catalogServiceCircuitBreaker
