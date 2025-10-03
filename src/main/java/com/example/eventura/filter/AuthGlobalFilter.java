@@ -28,7 +28,8 @@ public class AuthGlobalFilter implements GlobalFilter {
             "/**/user/login",
             "/**/user/register",
             "/**/user/refresh",
-            "/actuator/**"
+            "/actuator/**",
+            "/**/catalog/**"
     );
 
     @Autowired
