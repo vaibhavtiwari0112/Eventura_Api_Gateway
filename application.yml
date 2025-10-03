@@ -12,42 +12,41 @@ spring:
       routes:
         # User Service
         - id: user-service
-          uri: ${USER_SERVICE_URL:http://localhost:8081}
+          uri: https://user-service-latest-quo0.onrender.com
           predicates:
             - Path=/api/user/**
           filters:
             - StripPrefix=1
 
         - id: catalog-service
-          uri: ${CATALOG_SERVICE_URL:http://localhost:8083}
+          uri: https://catalog-service-wvzz.onrender.com
           predicates:
             - Path=/api/catalog/**
           filters:
             - StripPrefix=1
 
         - id: show-service
-          uri: ${SHOW_SERVICE_URL:http://localhost:8084}
+          uri: https://show-service.onrender.com
           predicates:
             - Path=/api/shows/**
           filters:
             - StripPrefix=1
 
         - id: booking-service-bookings
-          uri: ${BOOKING_SERVICE_URL:http://localhost:8082}
+          uri: https://booking-service-fpnv.onrender.com
           predicates:
             - Path=/api/bookings/**
           filters:
             - StripPrefix=1
 
         - id: booking-service-locks
-          uri: ${BOOKING_SERVICE_URL:http://localhost:8082}
-          predicates:
+          uri: https://booking-service-fpnv.onrender.com
             - Path=/api/locks/**
           filters:
             - StripPrefix=1
 
         - id: payment-service
-          uri: ${PAYMENT_SERVICE_URL:http://localhost:8086}
+          uri: https://eventura-payment-service-d81i.vercel.app
           predicates:
             - Path=/api/payments/**
           filters:
