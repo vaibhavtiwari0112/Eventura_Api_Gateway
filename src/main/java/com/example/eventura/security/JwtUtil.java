@@ -14,7 +14,7 @@ public class JwtUtil {
     private final Key signingKey;
     private final String issuer;
 
-    public JwtUtil(@Value("${eventura.security.jwt.secret}") String secret,
+    public JwtUtil(@Value("${eventura.security.jwt.secret:mySuperSecretKey12345678901234567890}") String secret,
                    @Value("${eventura.security.jwt.issuer:eventura}") String issuer) {
         // secret must be long enough for HS256
         this.signingKey = Keys.hmacShaKeyFor(secret.getBytes());
