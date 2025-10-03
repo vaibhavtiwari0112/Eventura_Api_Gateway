@@ -113,3 +113,7 @@ eventura:
       secret: ${JWT_SECRET:mySuperSecretKey12345678901234567890}
       issuer: ${JWT_ISSUER:eventura}
       expiration: ${JWT_EXPIRATION:8640000000}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
