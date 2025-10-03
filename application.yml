@@ -17,54 +17,93 @@ spring:
             - Path=/api/user/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: userServiceCircuitBreaker
+                fallbackUri: forward:/fallback/user
 
+        # Catalog Service (NO StripPrefix, backend expects /api/catalog/**)
         - id: catalog-service
           uri: https://catalog-service-wvzz.onrender.com
           predicates:
             - Path=/api/catalog/**
           filters:
-            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: catalogServiceCircuitBreaker
+                fallbackUri: forward:/fallback/catalog
 
+        # Show Service
         - id: show-service
           uri: https://show-service.onrender.com
           predicates:
             - Path=/api/shows/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: showServiceCircuitBreaker
+                fallbackUri: forward:/fallback/shows
 
+        # Booking Service (bookings)
         - id: booking-service-bookings
           uri: https://booking-service-fpnv.onrender.com
           predicates:
             - Path=/api/bookings/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: bookingServiceCircuitBreaker
+                fallbackUri: forward:/fallback/bookings
 
+        # Booking Service (locks) ✅ FIXED indentation
         - id: booking-service-locks
           uri: https://booking-service-fpnv.onrender.com
+          predicates:
             - Path=/api/locks/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: bookingLockServiceCircuitBreaker
+                fallbackUri: forward:/fallback/locks
 
+        # Payment Service
         - id: payment-service
           uri: https://eventura-payment-service-d81i.vercel.app
           predicates:
             - Path=/api/payments/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: paymentServiceCircuitBreaker
+                fallbackUri: forward:/fallback/payments
 
+        # Notification Service
         - id: notification-service
           uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
           predicates:
             - Path=/api/notifications/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: notificationServiceCircuitBreaker
+                fallbackUri: forward:/fallback/notifications
 
+        # Audit Service
         - id: audit-service
           uri: ${AUDIT_SERVICE_URL:http://localhost:8088}
           predicates:
             - Path=/api/audit/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: auditServiceCircuitBreaker
+                fallbackUri: forward:/fallback/audit
 
 # JWT config
 eventura:
