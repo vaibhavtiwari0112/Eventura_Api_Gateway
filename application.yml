@@ -5,9 +5,12 @@ spring:
   application:
     name: eventura-gateway
 
+  # ✅ Disable both MVC and WebFlux static resource mappings
+  webflux:
+    static-path-pattern: /nothing/**   # disables WebFlux static resource handler
   web:
     resources:
-      add-mappings: false  # ✅ Disable static resource serving (important)
+      add-mappings: false              # disables Spring MVC static resource handler
 
   cloud:
     gateway:
