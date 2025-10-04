@@ -5,6 +5,10 @@ spring:
   application:
     name: eventura-gateway
 
+  web:
+    resources:
+      add-mappings: false  # ✅ Disable static resource serving (important)
+
   cloud:
     gateway:
       default-filters:
@@ -22,7 +26,7 @@ spring:
                 name: userServiceCircuitBreaker
                 fallbackUri: forward:/fallback/user
 
-        # Catalog Service (NO StripPrefix, backend expects /api/catalog/**)
+        # Catalog Service
         - id: catalog-service
           uri: https://catalog-service-wvzz.onrender.com
           predicates:
@@ -58,7 +62,7 @@ spring:
                 name: bookingServiceCircuitBreaker
                 fallbackUri: forward:/fallback/bookings
 
-        # Booking Service (locks) ✅ FIXED indentation
+        # Booking Service (locks)
         - id: booking-service-locks
           uri: https://booking-service-fpnv.onrender.com
           predicates:
