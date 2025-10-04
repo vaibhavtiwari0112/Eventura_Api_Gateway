@@ -22,13 +22,13 @@
 	</properties>
 
 	<dependencies>
-		<!-- Core Boot -->
+		<!-- 🧩 Core -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- ✅ Reactive stack (no spring-boot-starter-web!) -->
+		<!-- ✅ Reactive stack for Gateway -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
@@ -40,25 +40,25 @@
 			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
 
-		<!-- ✅ Circuit Breaker for Gateway -->
+		<!-- ✅ Resilience4J Circuit Breaker -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
 		</dependency>
 
-		<!-- ✅ Load Balancer -->
+		<!-- ✅ Load Balancer (future Kubernetes integration) -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
 		</dependency>
 
-		<!-- ✅ Security for JWT validation -->
+		<!-- 🔐 Security (JWT validation) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- ✅ JWT -->
+		<!-- 🔑 JWT dependencies -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -77,34 +77,34 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- ✅ .env file loader -->
+		<!-- 🌿 .env file loader -->
 		<dependency>
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
 			<version>3.0.0</version>
 		</dependency>
 
-		<!-- ✅ Actuator (for health endpoints) -->
+		<!-- 📊 Actuator (for health, metrics, route debug) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- ✅ Lombok -->
+		<!-- 🧠 Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- ✅ Config Processor (for metadata generation) -->
+		<!-- ⚙️ Configuration Processor -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- ✅ Testing -->
+		<!-- 🧪 Tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -138,5 +138,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

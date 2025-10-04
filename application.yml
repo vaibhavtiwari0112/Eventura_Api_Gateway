@@ -24,15 +24,16 @@ spring:
       routes:
         # 🧩 User Service
         - id: user-service
-          uri: https://user-service-latest-quo0.onrender.com/
+          uri: https://user-service-latest-quo0.onrender.com
           predicates:
             - Path=/api/user/**
           filters:
+            # ✅ Keep 1 because your controller base path is /user
             - StripPrefix=1
 
         # 🎟 Catalog Service
         - id: catalog-service
-          uri: https://catalog-service-wvzz.onrender.com/
+          uri: https://catalog-service-wvzz.onrender.com
           predicates:
             - Path=/api/catalog/**
           filters:
@@ -40,23 +41,23 @@ spring:
 
         # 📅 Show Service
         - id: show-service
-          uri: https://show-service.onrender.com/
+          uri: https://show-service.onrender.com
           predicates:
             - Path=/api/shows/**
           filters:
             - StripPrefix=1
 
-        # 🎫 Booking Service - bookings
+        # 🎫 Booking Service (bookings)
         - id: booking-service-bookings
-          uri: https://booking-service-fpnv.onrender.com/
+          uri: https://booking-service-fpnv.onrender.com
           predicates:
             - Path=/api/bookings/**
           filters:
             - StripPrefix=1
 
-        # 🔒 Booking Service - locks
+        # 🔒 Booking Service (locks)
         - id: booking-service-locks
-          uri: https://booking-service-fpnv.onrender.com/
+          uri: https://booking-service-fpnv.onrender.com
           predicates:
             - Path=/api/locks/**
           filters:
@@ -64,7 +65,7 @@ spring:
 
         # 💳 Payment Service
         - id: payment-service
-          uri: https://eventura-payment-service-d81i.vercel.app/
+          uri: https://eventura-payment-service-d81i.vercel.app
           predicates:
             - Path=/api/payments/**
           filters:
@@ -72,7 +73,7 @@ spring:
 
         # 🔔 Notification Service
         - id: notification-service
-          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087/}
+          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
           predicates:
             - Path=/api/notifications/**
           filters:
@@ -80,7 +81,7 @@ spring:
 
         # 🪶 Audit Service
         - id: audit-service
-          uri: ${AUDIT_SERVICE_URL:http://localhost:8088/}
+          uri: ${AUDIT_SERVICE_URL:http://localhost:8088}
           predicates:
             - Path=/api/audit/**
           filters:
@@ -93,6 +94,13 @@ eventura:
       issuer: ${JWT_ISSUER:eventura}
       expiration: ${JWT_EXPIRATION:8640000000}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info,metrics
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive.DispatcherHandler: TRACE
