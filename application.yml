@@ -19,7 +19,6 @@ spring:
             allowCredentials: true
 
       default-filters:
-        # Remove cookies from requests for stateless APIs
         - RemoveRequestHeader=Cookie
 
       routes:
@@ -29,8 +28,7 @@ spring:
           predicates:
             - Path=/api/user/**
           filters:
-            # ✅ Keep StripPrefix=1 because your controller base path is /user
-            - StripPrefix=1
+            - StripPrefix=1  # removes /api
 
         # 🎟 CATALOG SERVICE
         - id: catalog-service
