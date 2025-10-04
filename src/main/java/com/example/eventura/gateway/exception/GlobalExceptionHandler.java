@@ -1,4 +1,4 @@
-package com.example.eventura.exception;
+package com.example.eventura.gateway.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.eventura;
+package com.example.eventura.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

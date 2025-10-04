@@ -1,4 +1,4 @@
-package com.example.eventura.config;
+package com.example.eventura.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

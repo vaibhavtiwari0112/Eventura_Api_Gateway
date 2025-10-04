@@ -1,4 +1,4 @@
-package com.example.eventura.security;
+package com.example.eventura.gateway.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

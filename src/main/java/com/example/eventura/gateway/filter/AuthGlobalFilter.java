@@ -1,6 +1,6 @@
-package com.example.eventura.filter;
+package com.example.eventura.gateway.filter;
 
-import com.example.eventura.security.JwtUtil;
+import com.example.eventura.gateway.security.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
