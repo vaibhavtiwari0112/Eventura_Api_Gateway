@@ -19,19 +19,20 @@ spring:
             allowCredentials: true
 
       default-filters:
+        # Remove cookies from requests for stateless APIs
         - RemoveRequestHeader=Cookie
 
       routes:
-        # 🧩 User Service
+        # 🧩 USER SERVICE
         - id: user-service
           uri: https://user-service-latest-quo0.onrender.com
           predicates:
             - Path=/api/user/**
           filters:
-            # ✅ Keep 1 because your controller base path is /user
+            # ✅ Keep StripPrefix=1 because your controller base path is /user
             - StripPrefix=1
 
-        # 🎟 Catalog Service
+        # 🎟 CATALOG SERVICE
         - id: catalog-service
           uri: https://catalog-service-wvzz.onrender.com
           predicates:
@@ -39,7 +40,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 📅 Show Service
+        # 📅 SHOW SERVICE
         - id: show-service
           uri: https://show-service.onrender.com
           predicates:
@@ -47,7 +48,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 🎫 Booking Service (bookings)
+        # 🎫 BOOKING SERVICE (bookings)
         - id: booking-service-bookings
           uri: https://booking-service-fpnv.onrender.com
           predicates:
@@ -55,7 +56,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 🔒 Booking Service (locks)
+        # 🔒 BOOKING SERVICE (locks)
         - id: booking-service-locks
           uri: https://booking-service-fpnv.onrender.com
           predicates:
@@ -63,7 +64,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 💳 Payment Service
+        # 💳 PAYMENT SERVICE
         - id: payment-service
           uri: https://eventura-payment-service-d81i.vercel.app
           predicates:
@@ -71,7 +72,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 🔔 Notification Service
+        # 🔔 NOTIFICATION SERVICE
         - id: notification-service
           uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
           predicates:
@@ -79,7 +80,7 @@ spring:
           filters:
             - StripPrefix=1
 
-        # 🪶 Audit Service
+        # 🪶 AUDIT SERVICE
         - id: audit-service
           uri: ${AUDIT_SERVICE_URL:http://localhost:8088}
           predicates:
