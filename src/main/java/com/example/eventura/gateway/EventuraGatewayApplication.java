@@ -1,5 +1,3 @@
-//package com.example.eventura.gateway;
-
 package com.example.eventura.gateway;
 
 import org.springframework.boot.SpringApplication;

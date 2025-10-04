@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: eventura-gateway
+  main:
+    web-application-type: reactive   # ✅ Ensure it runs as WebFlux app, not MVC
 
   web:
     resources:
@@ -96,13 +98,16 @@ eventura:
       issuer: ${JWT_ISSUER:eventura}
       expiration: ${JWT_EXPIRATION:8640000000}
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway,health,info,metrics
-
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.web.reactive.DispatcherHandler: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info
+  endpoint:
+    gateway:
+      enabled: true
