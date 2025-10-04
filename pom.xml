@@ -22,43 +22,43 @@
 	</properties>
 
 	<dependencies>
-		<!-- Core -->
+		<!-- Core Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- Reactive stack for API Gateway -->
+		<!-- ✅ Reactive stack (no spring-boot-starter-web!) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
-		<!-- Spring Cloud Gateway -->
+		<!-- ✅ Spring Cloud Gateway -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
 
-		<!-- ✅ Circuit Breaker support (required for "CircuitBreaker" filter) -->
+		<!-- ✅ Circuit Breaker for Gateway -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
 		</dependency>
 
-		<!-- LoadBalancer -->
+		<!-- ✅ Load Balancer -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
 		</dependency>
 
-		<!-- Security (for JWT validation filter) -->
+		<!-- ✅ Security for JWT validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- JWT -->
+		<!-- ✅ JWT -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -77,40 +77,34 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- .env file loader -->
+		<!-- ✅ .env file loader -->
 		<dependency>
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
 			<version>3.0.0</version>
 		</dependency>
 
-		<!-- Actuator -->
+		<!-- ✅ Actuator (for health endpoints) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- Lombok -->
+		<!-- ✅ Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- WebFlux -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-
-		<!-- Config Processor -->
+		<!-- ✅ Config Processor (for metadata generation) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Testing -->
+		<!-- ✅ Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -144,4 +138,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
