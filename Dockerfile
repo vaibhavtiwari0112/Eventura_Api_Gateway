@@ -12,7 +12,7 @@ COPY src ./src
 
 # ✅ Optional: copy .env or any extra config files if used
 #COPY .env .env
-COPY application.yml application.yml
+COPY src/main/resources/application.yml src/main/resources/
 
 RUN mvn -B clean package -DskipTests
 

@@ -21,11 +21,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- Core -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
 
 		<!-- WebFlux for reactive Gateway -->
 		<dependency>
