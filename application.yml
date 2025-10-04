@@ -5,6 +5,9 @@ spring:
   application:
     name: eventura-gateway
 
+  web:
+    resources:
+      add-mappings: false
   config:
     import: optional:file:.env
 
