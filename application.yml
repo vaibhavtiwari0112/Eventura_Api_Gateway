@@ -24,15 +24,15 @@ spring:
       routes:
         # 🧩 USER SERVICE
         - id: user-service
-          uri: https://user-service-latest-quo0.onrender.com
+          uri: ${USER_SERVICE_URL:https://user-service-latest-quo0.onrender.com}
           predicates:
             - Path=/api/user/**
           filters:
-            - StripPrefix=1  # removes /api
+            - StripPrefix=1
 
         # 🎟 CATALOG SERVICE
         - id: catalog-service
-          uri: https://catalog-service-wvzz.onrender.com
+          uri: ${CATALOG_SERVICE_URL:https://catalog-service-wvzz.onrender.com}
           predicates:
             - Path=/api/catalog/**
           filters:
@@ -40,7 +40,7 @@ spring:
 
         # 📅 SHOW SERVICE
         - id: show-service
-          uri: https://show-service.onrender.com
+          uri: ${SHOW_SERVICE_URL:https://show-service.onrender.com}
           predicates:
             - Path=/api/shows/**
           filters:
@@ -48,7 +48,7 @@ spring:
 
         # 🎫 BOOKING SERVICE (bookings)
         - id: booking-service-bookings
-          uri: https://booking-service-fpnv.onrender.com
+          uri: ${BOOKING_SERVICE_URL:https://booking-service-fpnv.onrender.com}
           predicates:
             - Path=/api/bookings/**
           filters:
@@ -56,7 +56,7 @@ spring:
 
         # 🔒 BOOKING SERVICE (locks)
         - id: booking-service-locks
-          uri: https://booking-service-fpnv.onrender.com
+          uri: ${BOOKING_SERVICE_URL:https://booking-service-fpnv.onrender.com}
           predicates:
             - Path=/api/locks/**
           filters:
@@ -64,7 +64,7 @@ spring:
 
         # 💳 PAYMENT SERVICE
         - id: payment-service
-          uri: https://eventura-payment-service-d81i.vercel.app
+          uri: ${PAYMENT_SERVICE_URL:https://eventura-payment-service-d81i.vercel.app}
           predicates:
             - Path=/api/payments/**
           filters:
