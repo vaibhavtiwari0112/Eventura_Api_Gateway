@@ -5,112 +5,87 @@ spring:
   application:
     name: eventura-gateway
 
-  webflux:
-    base-path: /   # ✅ Simple and clean — disables default static resources implicitly
+  config:
+    import: optional:file:.env
 
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+
       default-filters:
         - RemoveRequestHeader=Cookie
+
       routes:
         # 🧩 User Service
         - id: user-service
-          uri: https://user-service-latest-quo0.onrender.com
+          uri: https://user-service-latest-quo0.onrender.com/
           predicates:
             - Path=/api/user/**
           filters:
-            # ✅ Keep StripPrefix=1 so /api/user/login -> /user/login
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: userServiceCircuitBreaker
-                fallbackUri: forward:/fallback/user
 
-        # 🧩 Catalog Service
+        # 🎟 Catalog Service
         - id: catalog-service
-          uri: https://catalog-service-wvzz.onrender.com
+          uri: https://catalog-service-wvzz.onrender.com/
           predicates:
             - Path=/api/catalog/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: catalogServiceCircuitBreaker
-                fallbackUri: forward:/fallback/catalog
 
-        # 🧩 Show Service
+        # 📅 Show Service
         - id: show-service
-          uri: https://show-service.onrender.com
+          uri: https://show-service.onrender.com/
           predicates:
             - Path=/api/shows/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: showServiceCircuitBreaker
-                fallbackUri: forward:/fallback/shows
 
-        # 🧩 Booking Service (bookings)
+        # 🎫 Booking Service - bookings
         - id: booking-service-bookings
-          uri: https://booking-service-fpnv.onrender.com
+          uri: https://booking-service-fpnv.onrender.com/
           predicates:
             - Path=/api/bookings/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: bookingServiceCircuitBreaker
-                fallbackUri: forward:/fallback/bookings
 
-        # 🧩 Booking Service (locks)
+        # 🔒 Booking Service - locks
         - id: booking-service-locks
-          uri: https://booking-service-fpnv.onrender.com
+          uri: https://booking-service-fpnv.onrender.com/
           predicates:
             - Path=/api/locks/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: bookingLockServiceCircuitBreaker
-                fallbackUri: forward:/fallback/locks
 
-        # 🧩 Payment Service
+        # 💳 Payment Service
         - id: payment-service
-          uri: https://eventura-payment-service-d81i.vercel.app
+          uri: https://eventura-payment-service-d81i.vercel.app/
           predicates:
             - Path=/api/payments/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: paymentServiceCircuitBreaker
-                fallbackUri: forward:/fallback/payments
 
-        # 🧩 Notification Service
+        # 🔔 Notification Service
         - id: notification-service
-          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
+          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8087/}
           predicates:
             - Path=/api/notifications/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: notificationServiceCircuitBreaker
-                fallbackUri: forward:/fallback/notifications
 
-        # 🧩 Audit Service
+        # 🪶 Audit Service
         - id: audit-service
-          uri: ${AUDIT_SERVICE_URL:http://localhost:8088}
+          uri: ${AUDIT_SERVICE_URL:http://localhost:8088/}
           predicates:
             - Path=/api/audit/**
           filters:
             - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: auditServiceCircuitBreaker
-                fallbackUri: forward:/fallback/audit
 
-# 🔐 JWT configuration
 eventura:
   security:
     jwt:
@@ -118,8 +93,6 @@ eventura:
       issuer: ${JWT_ISSUER:eventura}
       expiration: ${JWT_EXPIRATION:8640000000}
 
-# 🧭 Logging
 logging:
   level:
-    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE
     org.springframework.cloud.gateway: DEBUG
